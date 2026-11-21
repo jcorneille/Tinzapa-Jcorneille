@@ -1,0 +1,191 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  html {
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (min-width: 1920px) {
+    html {
+      font-size: 17px;
+    }
+  }
+
+  @media (min-width: 2560px) {
+    html {
+      font-size: 19px;
+    }
+  }
+
+  html,
+  body,
+  #root {
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+    margin: 0;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    background-color: #090d16;
+    color: #f1f5f9;
+    overflow-x: hidden;
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.font-gaming {
+  font-family: 'Orbitron', 'Plus Jakarta Sans', sans-serif;
+  letter-spacing: 0.08em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-goza-shimmer,
+  .animate-ps5-float-1,
+  .animate-ps5-float-2,
+  .animate-ps5-float-3,
+  .animate-ps5-float-4,
+  .animate-ps5-lightbar,
+  .animate-ps5-dpad-1,
+  .animate-ps5-dpad-2,
+  .animate-ps5-dpad-3,
+  .animate-ps5-dpad-4 {
+    animation: none !important;
+  }
+}
+
+@keyframes gozaShimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes ps5SymbolFloat {
+  0%,
+  100% {
+    transform: translateY(0px) scale(1);
+    opacity: 0.78;
+  }
+  50% {
+    transform: translateY(-2.5px) scale(1.1);
+    opacity: 1;
+  }
+}
+
+@keyframes ps5LightbarSweep {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(220%);
+  }
+}
+
+@keyframes ps5DpadGlow {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.animate-goza-shimmer {
+  background-size: 220% auto;
+  animation: gozaShimmer 5s ease-in-out infinite;
+}
+
+.animate-ps5-float-1 {
+  animation: ps5SymbolFloat 2.8s ease-in-out infinite;
+}
+.animate-ps5-float-2 {
+  animation: ps5SymbolFloat 2.8s ease-in-out 0.45s infinite;
+}
+.animate-ps5-float-3 {
+  animation: ps5SymbolFloat 2.8s ease-in-out 0.9s infinite;
+}
+.animate-ps5-float-4 {
+  animation: ps5SymbolFloat 2.8s ease-in-out 1.35s infinite;
+}
+
+.animate-ps5-lightbar {
+  animation: ps5LightbarSweep 3.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.animate-ps5-dpad-1 {
+  animation: ps5DpadGlow 2.4s ease-in-out infinite;
+}
+.animate-ps5-dpad-2 {
+  animation: ps5DpadGlow 2.4s ease-in-out 0.6s infinite;
+}
+.animate-ps5-dpad-3 {
+  animation: ps5DpadGlow 2.4s ease-in-out 1.2s infinite;
+}
+.animate-ps5-dpad-4 {
+  animation: ps5DpadGlow 2.4s ease-in-out 1.8s infinite;
+}
+
+/* Styles dédiés à l'impression ticket thermique 58mm / 80mm */
+@media print {
+  html, body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  body * {
+    visibility: hidden;
+  }
+  #thermal-receipt-print-area,
+  #thermal-receipt-print-area *,
+  #snack-receipt-print-area,
+  #snack-receipt-print-area * {
+    visibility: visible;
+  }
+  #thermal-receipt-print-area,
+  #snack-receipt-print-area {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 80mm;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 3mm;
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    line-height: 1.25;
+  }
+  #thermal-receipt-print-area.thermal-58mm,
+  #snack-receipt-print-area.thermal-58mm {
+    width: 58mm !important;
+    font-size: 10px !important;
+  }
+}
+
